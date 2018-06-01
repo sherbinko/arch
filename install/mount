@@ -1,0 +1,24 @@
+#!/usr/bin/ash
+
+run_hook() {
+    if [ "$ntfsfix" ]; then
+        ntfsfix $ntfsfix
+        ntfsfix -d $ntfsfix
+    fi
+}
+
+run_latehook() {
+    if [ "$loop" ]; then
+        mkdir -p /host
+        mount --move /new_root /host
+
+        modprobe loop
+        modprobe nvme
+        modprobe ntfs
+        modprobe nls_utf8
+        mount -o loop $loopflags "/host/$loop" /new_root
+
+        mkdir -p /new_root/host
+        mount --move /host /new_root/host
+    fi
+}

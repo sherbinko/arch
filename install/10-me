@@ -1,0 +1,4 @@
+Defaults targetpw
+Defaults lecture=never
+Defaults timestamp_timeout=0
+me ALL=(ALL) ALL
