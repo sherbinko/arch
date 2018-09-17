@@ -1,11 +1,11 @@
-set ARCH_ISO=<ARCH LIVE ISO PATH>
+set ARCH_ISO=T:/archlinux-2018.09.01-x86_64.iso
 
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" createmedium disk --size 20480 --format VMDK --variant Fixed --filename C:/VMs/Arch/Main.vmdk
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" createmedium disk --size 100 --format VDI --variant Fixed --filename C:/VMs/Arch/EFI.vdi
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" createvm --name="Arch" --ostype ArchLinux_64 --register
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" sharedfolder add Arch --name "common" --hostpath "C:/VMs/Common"
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --memory 8192 --vram 128 --cpus 4
-"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --firmware efi64 --rtcuseutc on --boot1 dvd --boot2 disk
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --firmware efi64 --rtcuseutc on
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --mouse usb --audio dsound --audioout on --audioin on
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --nic1 bridged --nicpromisc1 allow-all --bridgeadapter1 "Killer Wireless-n/a/ac 1535 Wireless Network Adapter" --nictype1 82545EM
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm Arch --accelerate3d on

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yes|pacman -S terminus-font iw wpa_supplicant wpa_actiond dialog efibootmgr net-tools openssh ntfs-3g grub xf86-input-evdev nvidia-libgl libglvnd virtualbox-guest-modules-arch virtualbox-guest-utils sudo
+yes|pacman -S terminus-font iw wpa_supplicant wpa_actiond dialog efibootmgr net-tools openssh ntfs-3g grub xf86-input-evdev nvidia-utils libglvnd virtualbox-guest-modules-arch virtualbox-guest-utils sudo exfat-utils
 
 cp /root/install/fstab /etc/fstab
 
@@ -42,8 +42,7 @@ systemctl enable sshd
 
 cp /root/install/mount /usr/lib/initcpio/hooks/mount
 cp /root/install/mount.sh /usr/lib/initcpio/install/mount
-mkinitcpio -A mount -k `pacman -Qi linux|grep -Po "(?<=Version         : ).*"`-ARCH -g /boot/custom.img
-cp -R /mnt/efi/EFI /mnt/common
+mkinitcpio -A mount -k `pacman -Qi linux|grep -Po "(?<=Version         : ).*(?=\.arch1)"`-arch1-1-ARCH -g /boot/custom.img
 
 useradd -g root -m me
 passwd -d me
@@ -59,7 +58,8 @@ cp /root/install/lxdm.conf /etc/lxdm/lxdm.conf
 echo '[multilib]' >>/etc/pacman.conf
 echo 'Include = /etc/pacman.d/mirrorlist' >>/etc/pacman.conf
 yes|pacman -Syu
-yes|pacman -S autoconf automake binutils bison fakeroot flex gcc libtool m4 make patch pkg-config git ttf-dejavu artwiz-fonts libreoffice-fresh libx264 vlc phonon-qt5-vlc konsole krusader chromium git lib32-libglvnd kate wine wine_gecko wine-mono winetricks android-tools
+yes ''|pacman -S --needed base-devel
+yes|pacman -S ttf-dejavu artwiz-fonts libreoffice-fresh libx264 vlc phonon-qt5-vlc konsole krusader chromium git lib32-libglvnd kate wine wine_gecko wine-mono winetricks android-tools
 
 cd /home/me/aur
 sudo -u me git clone https://aur.archlinux.org/aurget.git
@@ -80,4 +80,7 @@ cd intellij-idea-ultimate-edition
 yes|sudo -u me makepkg -sr
 yes|pacman -U *.tar.xz
 
-yes|pacman -S maven gradle
+yes|pacman -S maven gradle kotlin
+
+###################################################### Exit ###############################################
+exit

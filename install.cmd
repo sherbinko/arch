@@ -30,3 +30,6 @@ scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -r install r
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch "echo '%PUBKEY%' >/root/install/id_rsa.pub"
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch /root/install/prepareFS.sh
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch /root/install/install.sh
+sleep 10
+
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" storageattach Arch --storagectl IDE --port 0 --device 0 --type dvddrive --medium none
