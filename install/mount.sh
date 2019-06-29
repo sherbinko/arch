@@ -14,5 +14,3 @@ help() {
 This hook adds support for loop root file systems
 HELPEOF
 }
-
-# vim: set ft=sh ts=4 sw=4 et:

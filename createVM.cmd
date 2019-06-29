@@ -1,4 +1,4 @@
-set ARCH_ISO=T:/archlinux-2018.09.01-x86_64.iso
+set ARCH_ISO=<ISO Path>
 
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" createmedium disk --size 20480 --format VMDK --variant Fixed --filename C:/VMs/Arch/Main.vmdk
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" createmedium disk --size 100 --format VDI --variant Fixed --filename C:/VMs/Arch/EFI.vdi

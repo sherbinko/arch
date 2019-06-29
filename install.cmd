@@ -26,10 +26,10 @@ sleep 1
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm Arch keyboardputscancode 1c 9c
 sleep 1
 
-scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -r install root@arch:/root
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch "echo '%PUBKEY%' >/root/install/id_rsa.pub"
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch /root/install/prepareFS.sh
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch /root/install/install.sh
-sleep 10
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch bash -- <prepareFS.sh
+scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -r install root@arch:/mnt/nvme
+scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -r /cygdrive/c/Windows/Fonts root@arch:/mnt/nvme/install
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@arch bash -- <install.sh
 
+sleep 10
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" storageattach Arch --storagectl IDE --port 0 --device 0 --type dvddrive --medium none
